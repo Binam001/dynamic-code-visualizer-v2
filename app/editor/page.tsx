@@ -142,9 +142,9 @@ const handleVisualizeClick = (algorithm: string) => {
                 onChange={setCode}
                 language={language}
                 currentLine={currentLine}
-                breakpoints={breakpoints}
-                onBreakpointToggle={toggleBreakpoint}
-                disabled={isRunning || isDebugging}
+                // breakpoints={breakpoints}
+                // onBreakpointToggle={toggleBreakpoint}
+                // disabled={isRunning || isDebugging}
               />
             </CardContent>
           </Card>
