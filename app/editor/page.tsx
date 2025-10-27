@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Clock } from "lucide-react"
-import MonacoEditor from "@/components/monaco-editor"
+// import MonacoEditor from "@/components/monaco-editor"
+import dynamic from "next/dynamic"
+const MonacoEditor = dynamic(() => import("@/components/monaco-editor"), { ssr: false })
+
 import ExecutionTimeline from "@/components/execution-timeline"
 import DebugControls from "@/components/debug-controls"
 import VisualizationPanel from "@/components/visualization-panel"

@@ -1,5 +1,18 @@
 "use client"
 
+// Fix Monaco worker loading in browser/Next.js environments
+if (typeof window !== "undefined" && typeof window.MonacoEnvironment === "undefined") {
+  window.MonacoEnvironment = {
+    getWorkerUrl: function (moduleId, label) {
+      // Use a fallback worker loader or a CDN worker if needed
+      return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+        self.MonacoEnvironment = { baseUrl: '/' };
+        importScripts('https://unpkg.com/monaco-editor@0.45.0/min/vs/base/worker/workerMain.js');`
+      )}`;
+    }
+  };
+}
+
 import { useEffect, useRef } from "react"
 import * as monaco from "monaco-editor"
 
