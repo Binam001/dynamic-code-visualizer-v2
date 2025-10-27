@@ -70,8 +70,14 @@ export default function MonacoVisualizer() {
       <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
         {/* Code Editor */}
         <div className="w-full md:w-[35%] flex flex-col border-b md:border-b-0 md:border-r border-gray-700">
-          <div className="bg-gray-800 px-4 py-2 border-b border-gray-700">
+          <div className="bg-gray-800 px-4 py-2 border-b border-gray-700 flex justify-between">
             <h2 className="text-lg font-semibold">Code Editor</h2>
+            <button
+              onClick={run}
+              className="px-3 py-1 bg-blue-900 hover:bg-blue-700 rounded transition-colors text-sm"
+            >
+              ▶ Run & Visualize
+            </button>
           </div>
 
           <div className="flex-1 min-h-[200px]">
@@ -87,15 +93,6 @@ export default function MonacoVisualizer() {
                 scrollBeyondLastLine: false,
               }}
             />
-          </div>
-
-          <div className="p-4 bg-gray-800 border-t border-gray-700 flex justify-start">
-            <button
-              onClick={run}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded transition-colors text-sm"
-            >
-              ▶ Run & Visualize
-            </button>
           </div>
         </div>
 
