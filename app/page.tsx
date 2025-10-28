@@ -141,25 +141,25 @@ export default function LandingPage() {
       title: "Multi-Language Support",
       description:
         "Write and execute code in JavaScript, Python, C, C++, and Java with syntax highlighting and error detection.",
-      image: "/images/multi-programming-language.png",
+      image: "/images/feature-1.png",
     },
     {
       icon: <Eye className="w-8 h-8" />,
       title: "Visual Execution Timeline",
       description: "See your code execution flow with an interactive timeline showing each step of the process.",
-      image: "/images/visual-execution-timeline.png",
+      image: "/images/feature-2.png",
     },
     {
       icon: <Bug className="w-8 h-8" />,
       title: "Step-by-Step Debugging",
       description: "Debug your code line by line, set breakpoints, and watch variables change in real-time.",
-      image: "/images/step-by-step-debugging.png",
+      image: "/images/feature-3.png",
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Real-time Code Analysis",
       description: "Get instant feedback on time complexity, algorithm analysis, and performance insights.",
-      image: "/images/real-time-code-analysis.png",
+      image: "/images/feature-4.png",
     },
   ]
 
