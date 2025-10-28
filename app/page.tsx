@@ -19,8 +19,120 @@ import {
   GitBranch,
 } from "lucide-react"
 import Link from "next/link"
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LandingPage() {
+  useEffect(() => {
+  let isGapAnimationCompleted = false;
+  let isFlipAnimationCompleted = false;
+
+  function initAnimation () {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      ScrollTrigger.create({
+        trigger: ".img-container",
+        start: 'top 20%',
+        end: 'bottom center',
+        scrub: 1,
+        pin: true,
+        pinSpacing: true,
+        onUpdate: (self) => {
+          const progress = self.progress;
+
+          if (progress <= 0.1) {
+            const widthPercentage = gsap.utils.mapRange(0, 0.25, 75, 60, progress);
+            gsap.set('.img-container', {width: `${widthPercentage}%`});
+          } else {
+            gsap.set('.img-container', {width: '60%'})
+          }
+
+          if (progress >= 0.25 && !isGapAnimationCompleted) {
+            gsap.to('.img-container', {
+              gap: '20px',
+              duration: 0.5,
+              ease: 'power3.out',
+            });
+
+            gsap.to(['#img1', '#img2', '#img3'], {
+              borderRadius: '20px',
+              duration: 0.5,
+              ease: 'power3.out',
+            });
+
+            isFlipAnimationCompleted = true;
+          }
+
+          if (progress >= 0.7 && isFlipAnimationCompleted) {
+            gsap.to('.img', {
+              rotationY: 180,
+              duration: 0.75,
+              ease: 'power3.inOut',
+            });
+
+            gsap.to(['#img1', '#img3'], {
+              y: 30,
+              rotationZ: (i) => [-15, 15][i],
+              duration: 0.75,
+              ease: 'power3.inOut',
+            })
+
+            isFlipAnimationCompleted = true;
+          } else if (progress < 0.7 && isFlipAnimationCompleted) {
+            gsap.to('.img-container', {
+              gap: '0px',
+              duration: 0.5,
+              ease: 'power3.out',
+            });
+            gsap.to('#img1', {
+              borderRadius: '20px 0 0 20px',
+              duration: 0.5,
+              ease: 'power3.out',
+            });
+            gsap.to('#img2', {
+              borderRadius: '0px',
+              duration: 0.5,
+              ease: 'power3.out',
+            });
+            gsap.to('#img3', {
+              borderRadius: '0 20px 20px 0',
+              duration: 0.5,
+              ease: 'power3.out',
+            });
+
+            gsap.to('.img', {
+              rotationY: 0,
+              duration: 0.75,
+              ease: 'power3.inOut',
+              stagger: -0.1,
+            });
+
+             gsap.to(['#img1', '#img3'], {
+              y: 0,
+              rotationZ: 0,
+              duration: 0.75,
+              ease: 'power3.inOut',
+            });
+
+            isFlipAnimationCompleted = false;
+          }
+        }
+
+      })
+
+    })
+
+  }
+
+  initAnimation();
+   })
+
+
   const [currentFeature, setCurrentFeature] = useState(0)
 
   const features = [
@@ -32,16 +144,16 @@ export default function LandingPage() {
       image: "../images/multi-programming-language.png",
     },
     {
-      icon: <Bug className="w-8 h-8" />,
-      title: "Step-by-Step Debugging",
-      description: "Debug your code line by line, set breakpoints, and watch variables change in real-time.",
-      image: "../images/step-by-step-debugging.png",
-    },
-    {
       icon: <Eye className="w-8 h-8" />,
       title: "Visual Execution Timeline",
       description: "See your code execution flow with an interactive timeline showing each step of the process.",
       image: "../images/visual-execution-timeline.png",
+    },
+    {
+      icon: <Bug className="w-8 h-8" />,
+      title: "Step-by-Step Debugging",
+      description: "Debug your code line by line, set breakpoints, and watch variables change in real-time.",
+      image: "../images/step-by-step-debugging.png",
     },
     {
       icon: <Zap className="w-8 h-8" />,
@@ -131,21 +243,36 @@ export default function LandingPage() {
               </Badge>
 
             {/* Hero Image */}
-            {/* <div
-              className="mt-16 w-1/2 mx-auto rounded-lg shadow-2xl border bg-cover bg-center"
-              style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(20, 20, 20, 0.7)), url('../images/first-img.jpg')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                height: "300px",
-              }}
-            ></div> */}
-            <div
-              className="w-full min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-              style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(15,15,15,0.9)), url('../images/first-img.jpg')`,
-              }}
-            >
+            <div className="img-container relative w-[75%] flex mx-auto" style={{perspective: '1000px', transform: 'translateY(40px)'}}>
+              <div className="img relative flex-1 aspect-[5/7]" style={{transformStyle: 'preserve-3d', transformOrigin: 'top', borderRadius: '20px 0 0 20px'}} id="img1">
+                <div className="front-img absolute w-full h-full" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden'}}>
+                  <img className="w-full h-full object-cover" src="/images/hero-img-p1.jpg" alt="hero-img-p1" />
+                </div>
+                <div className="back-img absolute w-full h-full flex justify-center items-center bg-[#203755]" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
+                  <img src={features[1]?.image} alt={features[1]?.title} className="w-full h-full object-contain" />
+                </div>
+              </div>
+              
+              <div className="img relative flex-1 aspect-[5/7]" style={{transformStyle: 'preserve-3d', transformOrigin: 'top'}} id="img2">
+                <div className="front-img absolute w-full h-full" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden'}}>
+                  <img className="w-full h-full object-cover" src="/images/hero-img-p2.jpg" alt="hero-img-p2" />
+                </div>
+                <div className="back-img absolute w-full h-full flex justify-center items-center bg-[#203755]" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
+                  <img src={features[2]?.image} alt={features[2]?.title} className="w-full h-full object-contain" />
+                </div>
+              </div>
+              
+              <div className="img relative flex-1 aspect-[5/7]" style={{transformStyle: 'preserve-3d', transformOrigin: 'top', borderRadius: '0 20px 20px 0'}} id="img3">
+                <div className="front-img absolute w-full h-full" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden'}}>
+                  <img className="w-full h-full object-cover" src="/images/hero-img-p3.jpg" alt="hero-img-p3" />
+                </div>
+                <div className="back-img absolute w-full h-full flex justify-center items-center bg-[#203755]" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
+                  <img src={features[3]?.image} alt={features[3]?.title} className="w-full h-full object-contain" />
+                </div>
+              </div>
+
+              
+              
             </div>
 
           </div>
