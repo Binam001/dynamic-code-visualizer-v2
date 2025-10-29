@@ -8,19 +8,14 @@ import {
   ArrowRight,
   Code,
   Play,
-  Bug,
-  Zap,
   Eye,
   Clock,
-  BookOpen,
   CheckCircle,
-  Monitor,
-  Cpu,
-  GitBranch,
 } from "lucide-react"
 import Link from "next/link"
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { benefits, features, howItWork } from "@/constants"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,57 +129,6 @@ export default function LandingPage() {
 
 
   const [currentFeature, setCurrentFeature] = useState(0)
-
-  const features = [
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: "Multi-Language Support",
-      description:
-        "Write and execute code in JavaScript, Python, C, C++, and Java with syntax highlighting and error detection.",
-      image: "/images/feature-1.png",
-    },
-    {
-      icon: <Eye className="w-8 h-8" />,
-      title: "Visual Execution Timeline",
-      description: "See your code execution flow with an interactive timeline showing each step of the process.",
-      image: "/images/feature-2.png",
-    },
-    {
-      icon: <Bug className="w-8 h-8" />,
-      title: "Step-by-Step Debugging",
-      description: "Debug your code line by line, set breakpoints, and watch variables change in real-time.",
-      image: "/images/feature-3.png",
-    },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Real-time Code Analysis",
-      description: "Get instant feedback on time complexity, algorithm analysis, and performance insights.",
-      image: "/images/feature-4.png",
-    },
-  ]
-
-  const benefits = [
-    {
-      icon: <BookOpen className="w-6 h-6" />,
-      title: "Learn Programming Concepts",
-      description: "Understand how algorithms work by visualizing each step of execution.",
-    },
-    {
-      icon: <Monitor className="w-6 h-6" />,
-      title: "Debug More Effectively",
-      description: "Find and fix bugs faster with our interactive debugging tools.",
-    },
-    {
-      icon: <Cpu className="w-6 h-6" />,
-      title: "Analyze Performance",
-      description: "Get insights into time and space complexity of your algorithms.",
-    },
-    {
-      icon: <GitBranch className="w-6 h-6" />,
-      title: "Understand Control Flow",
-      description: "See how loops, conditions, and function calls execute in real-time.",
-    },
-  ]
 
   const sampleCodes = [
     "Fibonacci Sequence",
@@ -301,13 +245,9 @@ export default function LandingPage() {
                 >
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div
-                        className={`p-3 rounded-lg ${
+                       <feature.icon size={64} className={`p-3 rounded-lg ${
                           index === currentFeature ? "bg-primary text-primary-foreground" : "bg-muted"
-                        }`}
-                      >
-                        {feature.icon}
-                      </div>
+                        }`} />
                       <div>
                         <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                         <p className="text-muted-foreground">{feature.description}</p>
@@ -341,38 +281,18 @@ export default function LandingPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <Code className="w-8 h-8 text-primary" />
+            {howItWork.map((item) => (
+              <div key={item.title} className="text-center space-y-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                  <item.icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+                <p className="text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold">1. Write Your Code</h3>
-              <p className="text-muted-foreground">
-                Use our Monaco editor to write code in JavaScript, Python, C, C++, or Java. Choose from sample
-                algorithms or write your own.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <Play className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold">2. Run or Debug</h3>
-              <p className="text-muted-foreground">
-                Execute your code normally or enter debug mode to step through execution. Set breakpoints and control
-                the flow.
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <Eye className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold">3. Visualize & Learn</h3>
-              <p className="text-muted-foreground">
-                Watch the execution timeline, see variable changes, and understand how your algorithm works step by
-                step.
-              </p>
-            </div>
+            ))}
+           
           </div>
         </div>
       </section>
@@ -391,9 +311,7 @@ export default function LandingPage() {
             {benefits.map((benefit, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
-                    {benefit.icon}
-                  </div>
+                  <benefit.icon className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto" />
                   <h3 className="text-lg font-semibold">{benefit.title}</h3>
                   <p className="text-muted-foreground text-sm">{benefit.description}</p>
                 </CardContent>
@@ -404,7 +322,7 @@ export default function LandingPage() {
       </section>
 
       {/* Sample Algorithms Section */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Pre-loaded Sample Algorithms</h2>
@@ -441,7 +359,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary/5">
+      <section className="py-10 bg-primary/5">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
           <h2 className="text-3xl md:text-4xl font-bold">Ready to Visualize Your Code?</h2>
           <p className="text-xl text-muted-foreground">
@@ -460,11 +378,14 @@ export default function LandingPage() {
               <span>Get started in under 30 seconds</span>
             </div>
           </div>
+            <p className="text-muted-foreground text-center">
+              Built with Next.js, Monaco Editor, and modern web technologies.
+            </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t">
+      {/* <footer className="py-12 border-t">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -478,14 +399,8 @@ export default function LandingPage() {
             </p>
           </div>
         </div>
-      </footer>
+      </footer> */}
 
-      <style jsx global>{`
-        .bg-grid-pattern {
-          background-image: radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-      `}</style>
     </div>
   )
 }
