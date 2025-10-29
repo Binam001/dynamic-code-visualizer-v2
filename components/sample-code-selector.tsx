@@ -94,7 +94,7 @@ const visualizableAlgos = ["bubbleSort", "insertionSort", "linearSearch", "binar
             ))}
           </div>
           {visualizableAlgos.includes(selectedKey) && language === "javascript" && (
-  <Button onClick={() => onVisualizeClick(selectedKey)}>
+  <Button variant="outline" onClick={() => onVisualizeClick(selectedKey)}>
     Visualize
   </Button>
 )}

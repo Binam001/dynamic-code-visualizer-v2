@@ -137,10 +137,10 @@ export default function LandingPage() {
   }, [features.length])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    // <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 py-20">
           <div className="text-center space-y-8">
             {/* Logo and Title */}
@@ -149,7 +149,7 @@ export default function LandingPage() {
                 <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                   <Code className="w-6 h-6 text-primary-foreground" />
                 </div>
-                <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-6xl font-bold">
                   Dynamic Code Visualizer
                 </h1>
               </div>
@@ -184,7 +184,7 @@ export default function LandingPage() {
                 <div className="front-img absolute w-full h-full" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden'}}>
                   <img className="w-full h-full object-cover" src="/images/hero-img-p1.jpg" alt="hero-img-p1" />
                 </div>
-                <div className="back-img absolute w-full h-full flex justify-center items-center bg-[#203755]" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
+                <div className="back-img absolute w-full h-full flex justify-center items-center bg-imgBackground" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
                   <img src={features[1]?.image} alt={features[1]?.title} className="w-full h-full object-contain" />
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function LandingPage() {
                 <div className="front-img absolute w-full h-full" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden'}}>
                   <img className="w-full h-full object-cover" src="/images/hero-img-p2.jpg" alt="hero-img-p2" />
                 </div>
-                <div className="back-img absolute w-full h-full flex justify-center items-center bg-[#203755]" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
+                <div className="back-img absolute w-full h-full flex justify-center items-center bg-imgBackground" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
                   <img src={features[2]?.image} alt={features[2]?.title} className="w-full h-full object-contain" />
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function LandingPage() {
                 <div className="front-img absolute w-full h-full" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden'}}>
                   <img className="w-full h-full object-cover" src="/images/hero-img-p3.jpg" alt="hero-img-p3" />
                 </div>
-                <div className="back-img absolute w-full h-full flex justify-center items-center bg-[#203755]" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
+                <div className="back-img absolute w-full h-full flex justify-center items-center bg-imgBackground" style={{backfaceVisibility: 'hidden', borderRadius: 'inherit', overflow: 'hidden', transform: 'rotateY(180deg)'}}>
                   <img src={features[3]?.image} alt={features[3]?.title} className="w-full h-full object-contain" />
                 </div>
               </div>
@@ -254,7 +254,6 @@ export default function LandingPage() {
                 alt={features[currentFeature].title}
                 className="rounded-lg shadow-xl border w-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-lg"></div>
             </div>
           </div>
         </div>
@@ -323,7 +322,7 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sampleCodes.map((algorithm, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow cursor-pointer group">
+              <Link href={"/editor"} key={index} className="hover:shadow-md transition-shadow cursor-pointer group">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -333,7 +332,7 @@ export default function LandingPage() {
                     <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                   </div>
                 </CardContent>
-              </Card>
+              </Link>
             ))}
           </div>
 

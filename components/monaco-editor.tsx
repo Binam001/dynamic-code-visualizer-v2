@@ -13,7 +13,7 @@ if (typeof window !== "undefined" && typeof window.MonacoEnvironment === "undefi
   };
 }
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import * as monaco from "monaco-editor"
 
 interface MonacoEditorProps {
@@ -41,6 +41,41 @@ export default function MonacoEditor({
   const isInternalChangeRef = useRef(false)
   const decorationsRef = useRef<string[]>([])
 
+  const [isDark, setIsDark] = useState(false)
+
+  /** Detect Tailwind dark mode class on <body> */
+  useEffect(() => {
+    const updateDarkMode = () => setIsDark(document.body.classList.contains("dark"))
+    const observer = new MutationObserver(updateDarkMode)
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] })
+    updateDarkMode() // initial check
+    return () => observer.disconnect()
+  }, [])
+  useEffect(() => {
+    if (!editorRef.current) return
+
+    // You can define a custom theme to match Tailwind colors
+    monaco.editor.defineTheme("tailwind-dark", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [],
+      colors: {
+    "editor.background": "#0e040d",   // dark background
+    "editor.foreground": "#fafafa",   // text color
+    "editor.lineHighlightBackground": "#ffff0033", // rgba equivalent with alpha
+    "editorCursor.foreground": "#ffffff",
+    "editorLineNumber.foreground": "#888888",
+  },
+    })
+
+    monaco.editor.setTheme(isDark ? "tailwind-dark" : "vs")
+  }, [isDark])
+
+
+
+
+
+
   useEffect(() => {
     if (!containerRef.current) return
 
@@ -53,7 +88,7 @@ export default function MonacoEditor({
     if (!editorRef.current) {
       editorRef.current = monaco.editor.create(containerRef.current, {
         model: modelRef.current,
-        theme,
+        theme: isDark ? "vs-dark" : "vs",
         automaticLayout: true,
         minimap: { enabled: false },
         scrollBeyondLastLine: false,
