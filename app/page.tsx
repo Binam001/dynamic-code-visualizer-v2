@@ -4,14 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@components/ui/button"
 import { Card, CardContent } from "../components/ui/card"
 import { Badge } from "../components/ui/badge"
-import {
-  ArrowRight,
-  Code,
-  Play,
-  Eye,
-  Clock,
-  CheckCircle,
-} from "lucide-react"
+import { ArrowRight, Code, Clock, CheckCircle } from "lucide-react"
 import Link from "next/link"
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -127,7 +120,6 @@ export default function LandingPage() {
   initAnimation();
    })
 
-
   const [currentFeature, setCurrentFeature] = useState(0)
 
   const sampleCodes = [
@@ -215,8 +207,6 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              
-              
             </div>
 
           </div>
@@ -383,24 +373,6 @@ export default function LandingPage() {
             </p>
         </div>
       </section>
-
-      {/* Footer */}
-      {/* <footer className="py-12 border-t">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Code className="w-4 h-4 text-primary-foreground" />
-              </div>
-              <span className="text-lg font-semibold">Dynamic Code Visualizer</span>
-            </div>
-            <p className="text-muted-foreground text-center">
-              Built with Next.js, Monaco Editor, and modern web technologies.
-            </p>
-          </div>
-        </div>
-      </footer> */}
-
     </div>
   )
 }
