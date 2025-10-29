@@ -271,15 +271,15 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {howItWork.map((item) => (
-              <div key={item.title} className="text-center space-y-4">
+              <Card key={item.title} className="text-center space-y-4 p-4">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <item.icon className="w-8 h-8 text-primary" />
+                  <item.icon className="w-8 h-8 text-iconBg" />
                 </div>
-                <h3 className="text-xl font-semibold">{item.title}</h3>
+                <h3 className="text-xl text-muted-foreground font-semibold">{item.title}</h3>
                 <p className="text-muted-foreground">
                   {item.description}
                 </p>
-              </div>
+              </Card>
             ))}
            
           </div>
@@ -300,8 +300,8 @@ export default function LandingPage() {
             {benefits.map((benefit, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-6 space-y-4">
-                  <benefit.icon className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto" />
-                  <h3 className="text-lg font-semibold">{benefit.title}</h3>
+                  <benefit.icon className="w-12 h-12 text-iconBg rounded-lg flex items-center justify-center mx-auto" />
+                  <h3 className="text-lg text-muted-foreground font-semibold">{benefit.title}</h3>
                   <p className="text-muted-foreground text-sm">{benefit.description}</p>
                 </CardContent>
               </Card>
@@ -322,12 +322,12 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sampleCodes.map((algorithm, index) => (
-              <Link href={"/editor"} key={index} className="hover:shadow-md transition-shadow cursor-pointer group">
+              <Link href={"/editor"} key={index} className="bg-primary rounded-md hover:shadow-md transition-shadow cursor-pointer group">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="font-medium">{algorithm}</span>
+                      <span className="font-medium text-muted-foreground">{algorithm}</span>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                   </div>
@@ -338,7 +338,7 @@ export default function LandingPage() {
 
           <div className="text-center mt-12">
             <Link href="/editor">
-              <Button variant="outline" size="lg" className="group">
+              <Button variant="outline" size="lg" className="group bg-primary text-muted-foreground">
                 <ArrowRight className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
                 Try All Samples
               </Button>

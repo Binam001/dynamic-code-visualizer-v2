@@ -26,6 +26,7 @@ const config: Config = {
         background: "rgba(var(--background))",
         foreground: "rgba(var(--foreground))",
         imgBackground: "rgba(var(--imgBackground))",
+        iconBg: "rgba(var(--iconBg))",
         primary: {
           DEFAULT: "rgba(var(--primary))",
           foreground: "rgba(var(--primary-foreground))",

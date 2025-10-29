@@ -63,7 +63,7 @@ export default function VisualizationPanel({
       </CardHeader> */}
       <CardContent>
         <Tabs defaultValue="output" onValueChange={(val) => setMode(val as any)} className="w-full mt-2">
-          <TabsList className="flex flex-wrap gap-2 justify-start">
+          <TabsList className="flex flex-wrap gap-2 justify-start text-foreground">
             <TabsTrigger value="output">Output</TabsTrigger>
             <TabsTrigger value="timeComplexity">Time Complexity</TabsTrigger>
             <TabsTrigger value="explanation">Explanation</TabsTrigger>
@@ -92,8 +92,8 @@ export default function VisualizationPanel({
               ) : (
                 <div className="text-muted-foreground text-center py-8">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                      <Clock className="w-6 h-6" />
+                    <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-muted-foreground" />
                     </div>
                     <p>No output yet. Run your code to see results.</p>
                   </div>

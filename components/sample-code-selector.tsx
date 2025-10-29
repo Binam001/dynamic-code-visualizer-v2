@@ -79,7 +79,7 @@ const visualizableAlgos = ["bubbleSort", "insertionSort", "linearSearch", "binar
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2 text-muted-foreground">
           {/* <Settings className="w-5 h-5" /> */}
           Sample Code
         </CardTitle>
@@ -104,7 +104,7 @@ const visualizableAlgos = ["bubbleSort", "insertionSort", "linearSearch", "binar
             <>
               <Separator orientation="vertical" className="h-6" />
               <div className="flex items-center gap-2">
-                <span className="text-sm">Speed:</span>
+                <span className="text-sm text-muted-foreground">Speed:</span>
                 <Select value={executionSpeed.toString()} onValueChange={(value) => onSpeedChange(Number(value))}>
                   <SelectTrigger className="w-24">
                     <SelectValue />

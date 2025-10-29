@@ -14,7 +14,8 @@
   --secondary: 245, 247, 250, 1;
   --secondary-foreground: 29, 33, 46, 1;
   --muted: 245, 247, 250, 1;
-  --muted-foreground: 123, 124, 120, 1;
+  /* --muted-foreground: 123, 124, 120, 1; */
+  --muted-foreground: 14, 4, 13, 1;
   --accent: 245, 247, 250, 1;
   --accent-foreground: 29, 33, 46, 1;
   --destructive: 243, 47, 47, 1;
@@ -24,6 +25,7 @@
   --ring: 14, 4, 13, 1;
   --radius: 0.5rem;
   --imgBackground: 26, 38, 59, 1;
+  --iconBg: 14, 4, 13, 1;
 }
 
 .dark {
@@ -47,6 +49,7 @@
   --input: 44, 48, 56, 1;
   --ring: 215, 220, 227, 1;
   --imgBackground: 26, 38, 59, 1;
+  --iconBg: 245, 247, 250, 1;
 }
 .pink {
   --background: 255, 110, 180, 1;
@@ -60,7 +63,9 @@
   --secondary: 255, 230, 240, 1;
   --secondary-foreground: 140, 36, 88, 1;
   --muted: 255, 230, 240, 1;
-  --muted-foreground: 160, 100, 130, 1;
+  --muted-foreground: 255, 230, 240, 1;
+  /* --muted-foreground: rgba(140, 36, 88, 1); */
+  /* --muted-foreground: rgba(29, 33, 46, 1); */
   --accent: 255, 230, 240, 1;
   --accent-foreground: 140, 36, 88, 1;
   --destructive: 245, 50, 100, 1;
@@ -70,6 +75,7 @@
   --ring: 67, 4, 46, 1;
   --radius: 0.5rem;
   --imgBackground: 26, 38, 59, 1;
+  --iconBg: 255, 110, 180, 1;
 }
 .green {
   --background: 20, 110, 44, 1;
@@ -93,6 +99,7 @@
   --ring: 4, 46, 14, 1;
   --radius: 0.5rem;
   --imgBackground: 26, 38, 59, 1;
+  --iconBg: 20, 110, 44, 1;
 }
 
 

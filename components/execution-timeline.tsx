@@ -98,7 +98,7 @@ export default function ExecutionTimeline({ steps, currentStep, onStepClick }: E
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h3 className="text-lg font-semibold">Execution Flow</h3>
+          <h3 className="text-lg font-semibold text-muted-foreground">Execution Flow</h3>
           <Badge variant="outline">{steps.length} steps</Badge>
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -155,14 +155,14 @@ export default function ExecutionTimeline({ steps, currentStep, onStepClick }: E
                       <Badge variant={getStepBadgeVariant(step.type)} className="text-xs">
                         Line {step.line}
                       </Badge>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
                         {step.timestamp}ms
                       </Badge>
                     </div>
                     <span className="text-xs text-muted-foreground">Step {index + 1}</span>
                   </div>
 
-                  <p className="text-sm font-medium mb-1">{step.description}</p>
+                  <p className="text-sm font-medium mb-1 text-muted-foreground">{step.description}</p>
 
                   {step.variables.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1">
